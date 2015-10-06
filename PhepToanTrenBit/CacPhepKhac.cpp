@@ -4,8 +4,8 @@
 char QInt::operator[](int index) const
 {
 	char bit = 0;
-	if (index > 127)
-		return -1;
+	if ((index > 127) || (index <0))
+		return 0x7F;
 	else if (index > 63)
 	{
 		index -= 64;
