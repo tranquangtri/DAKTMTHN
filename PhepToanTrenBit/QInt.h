@@ -15,7 +15,13 @@ public:
 	// Hàm khởi tạo
 	// Tham số: a1,a2 hai nhóm bit của QInt
 	QInt(long long a1, long long a2);
-
+	QInt(const string& binary)
+	{
+		arrayBits[0] = 0;
+		arrayBits[1] = 0;
+		this->GetBinary(binary);
+		int a = 0;
+	}
 	// Hàm khởi tạo
 	// Tham số: khởi tạo QInt = 0
 	QInt();
@@ -69,7 +75,7 @@ public:
 	// Operator ==
 	// So sánh hai QInt
 	bool operator==(const QInt& so);
-	
+
 	// Operator |
 	// Tham số:	QInt so, số cần or với
 	// Trả về: Trả về QInt mới là kết quả của phép or hai QInt
@@ -92,7 +98,7 @@ public:
 	// Phép dịch phải
 	// Tham số: số bit cần dịch
 	QInt operator>>(int num);
-	
+
 	// Phép dịch trái
 	// Tham số: số bit cần dịch
 	QInt operator<<(int num);
@@ -100,4 +106,38 @@ public:
 	// Phép lấy chỉ số
 	// Tham số: chỉ số bit của QInt (0->127)
 	char operator[](int index) const;
+
+	// Chuyển chuỗi nhị phân sang QINt
+	void GetBinary(const string& binary)
+	{
+		int n = binary.length();
+		for (int i = 0; i < n; i++)
+		{
+			unsigned long long mask = binary[n-i-1] - '0';
+			if (i < 64)
+			{
+				arrayBits[1] = arrayBits[1] | (mask << i);
+			}
+			else if (i < 128)
+			{
+				arrayBits[0] = arrayBits[0] | (mask << (i - 64));
+			}
+			else
+				break;
+		}
+	}
+	// Chuyển sang chuỗi nhị phân
+	string ToBinary()
+	{
+		string ketQua("");
+		int index = 0;
+		while ((index >= 0) && ((*this)[index] != 1))
+			index++;
+		if (index == 128) return "ERROR: OVER LIMIT";
+		for (int i = 0; i <= 127 - index; i++)
+		{
+			ketQua += (*this)[i + index] +'0';
+		}
+		return ketQua;
+	}
 };
