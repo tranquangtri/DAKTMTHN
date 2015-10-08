@@ -17,7 +17,9 @@ QInt QInt::operator>>(int num)
 		nhomBitHai = nhomBitHai | (maskBitCuoiBenPhai << 63);
 		nhomBitDau = nhomBitDau >> 1;
 	}
-	return QInt(nhomBitDau, nhomBitHai);
+	QInt ketQua;
+	ketQua.SetQInt(nhomBitDau, nhomBitHai);
+	return ketQua;
 
 }
 
@@ -37,5 +39,7 @@ QInt QInt::operator<<(int num)
 		nhomBitDau = nhomBitDau | (maskBitCuoiBenTrai >> 63);
 		nhomBitHai = nhomBitHai << 1;
 	}
-	return QInt(nhomBitDau, nhomBitHai);
+	QInt ketQua;
+	ketQua.SetQInt(nhomBitDau, nhomBitHai);
+	return ketQua;
 }

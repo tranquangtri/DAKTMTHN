@@ -6,7 +6,7 @@
 QInt QInt::BuHai()
 {
 	QInt ketQua = ~(*this);
-	ketQua = ketQua + QInt(0, 1);
+	ketQua = ketQua + QInt("1", 2);
 	return ketQua;
 }
 QInt QInt::operator-(QInt so)

@@ -17,7 +17,7 @@ QInt QInt::operator/(QInt so)
 		so = so.BuHai();
 	}
 
-	QInt A(0, 0);
+	QInt A("0", 2);
 	int k = 128;
 	while (k > 0)
 	{

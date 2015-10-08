@@ -4,7 +4,7 @@
 QInt QInt::operator*(QInt so)
 {
 	int k = 128;
-	QInt A(0, 0);
+	QInt A("0",2);
 	QInt Q = so;
 	char bitThem = 0;
 	unsigned long long maskBitTrai0 = 9223372036854775807; // Bit trái nhất là 0, 63 bit còn lại là 1
@@ -12,12 +12,12 @@ QInt QInt::operator*(QInt so)
 	while (k > 0)
 	{
 		// Nếu hai bit cuối là 10 thì A = A - M
-		if (((Q & QInt(0, 1)) == QInt(0, 1)) && (bitThem == 0))
+		if (((Q & QInt("1", 2)) == QInt("1", 2)) && (bitThem == 0))
 		{
 			A = A - *this;
 		}
 		// Nếu hai bit cuối là 10 thì A = A - M
-		else if (((Q & QInt(0, 1)) == QInt(0, 0)) && (bitThem == 1))
+		else if (((Q & QInt("1", 2)) == QInt("0", 2)) && (bitThem == 1))
 		{
 			A = A + *this;
 		}
